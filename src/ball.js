@@ -33,7 +33,6 @@ export default class ball {
     let randPlusMinusY = Math.round(Math.random() * 1);
 
     let randomYVel = Math.random() * 1;
-    console.log(randomYVel);
 
     randPlusMinusX ? (this.velocity.x = 5) : (this.velocity.x = -5);
 
@@ -41,6 +40,6 @@ export default class ball {
       ? (this.velocity.y = randomYVel)
       : (this.velocity.y = -randomYVel);
 
-    this.game.start = true;
+    this.game.currentState = this.game.gameState[1];
   }
 }

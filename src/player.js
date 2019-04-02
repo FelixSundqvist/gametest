@@ -14,6 +14,7 @@ export default class Player {
     this.velocity = propertiesArr.velocity;
   }
   draw(ctx) {
+    ctx.fillStyle = "white";
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
   moveUp() {
