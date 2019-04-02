@@ -1,25 +1,46 @@
 export default class Opponent {
   constructor(game, propertiesArr) {
+    this.propertiesArr = propertiesArr;
     this.width = propertiesArr.width;
     this.height = propertiesArr.height;
     this.game = game;
+    this.isColliding = propertiesArr.isColliding;
+    this.stop = false;
 
     this.position = {
-      //y: (this.game.height - this.height) / 2,
-      y: 20,
+      y: (this.game.height - this.height) / 2,
       x: this.game.width - this.width
     };
 
-    this.top = this.position.y;
-    this.bottom = this.position.y + this.height;
+    this.velocity = propertiesArr.velocity;
   }
 
   draw(ctx) {
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
-  update(deltaTime) {
-    //console.log(this.top, this.bottom);
-    this.top = this.position.y;
-    this.bottom = this.position.y + this.height;
+
+  moveUp() {
+    if (this.position.y < 0) {
+      this.velocity = 0;
+    } else {
+      this.velocity = this.propertiesArr.velocity;
+    }
+    if (this.stop === false) {
+      this.position.y += -this.velocity;
+    }
   }
+
+  moveDown() {
+    if (this.position.y + this.height >= this.game.height) {
+      this.velocity = 0;
+    } else {
+      this.velocity = this.propertiesArr.velocity;
+    }
+    this.position.y += this.velocity;
+  }
+  stop() {
+    this.velocity = 0;
+  }
+
+  update(deltaTime) {}
 }

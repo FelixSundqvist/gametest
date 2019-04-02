@@ -1,8 +1,8 @@
 import "./styles.css";
 import Game from "./game.js";
 
-let height = 500;
-let width = 800;
+let height = 300;
+let width = 400;
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
 let lastTime = 0;
