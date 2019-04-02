@@ -20,7 +20,7 @@ export default class Game {
       1: "RUNNING",
       2: "GAME-OVER",
       3: "PAUSE",
-      4: "START"
+      4: "START SCREEN"
     };
 
     this.newGame();
