@@ -1,9 +1,11 @@
 export default class Arena {
   constructor(game) {
-    this.player1Score = game.player1Score;
-    this.player2Score = game.player2Score;
+    this.player1Score = 0;
+    this.player2Score = 0;
     this.game = game;
     this.winScore = 3;
+    this.p1Scored = false;
+    this.p2Scored = false;
   }
   draw(ctx) {
     ctx.font = "70px Arial";
@@ -17,14 +19,15 @@ export default class Arena {
       this.player1Score <= this.winScore &&
       this.player2Score <= this.winScore
     ) {
-      if (this.game.ball.x <= 0) {
-        //score left
-
-        this.player2Score += 1;
-        this.game.reset();
-      } else if (this.game.ball.x > this.game.width) {
+      if (this.game.ball.x > this.game.width) {
         //score right
         this.player1Score += 1;
+        this.p1Scored = true;
+        this.game.reset();
+      } else if (this.game.ball.x <= 0) {
+        //score left
+        this.player2Score += 1;
+        this.p2Scored = true;
 
         this.game.reset();
       }

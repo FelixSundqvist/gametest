@@ -3,10 +3,14 @@ export default class Input {
     let player1 = game.player;
 
     document.addEventListener("keydown", ev => {
-      if (game.currentState === game.gameState[1]) {
+      if (
+        game.currentState === game.gameState[1] ||
+        game.currentState === game.gameState[0]
+      ) {
         if (ev.keyCode === 87) player1.moveUp(); //w
         if (ev.keyCode === 83) player1.moveDown(); //s
-      } else if (game.currentState === game.gameState[0]) {
+      }
+      if (game.currentState === game.gameState[0]) {
         if (ev.keyCode === 32) game.start(); //space
       } else if (game.currentState === game.gameState[2]) {
         if (ev.keyCode === 32) game.newGame(); //space

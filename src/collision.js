@@ -19,19 +19,6 @@ export function collision(game, object) {
       } else {
         object.velocity.y = 0;
       }
-      //
-
-      //i.isColliding = true;
     }
   }
 }
-
-/*if (object.y === i.position.y - i.height) {
-  object.velocity.x = -object.velocity.x;
-} else if (object.y < i.position.y) {
-  object.velocity.y = 2;
-  object.velocity.x = -object.velocity.x;
-  object.velocity.y = -object.velocity.y;
-  console.log("crash");
-} else 
-*/

@@ -22,21 +22,32 @@ export default class Game {
     this.newGame();
   }
 
+  start() {
+    //running when clicking space
+    this.currentState = this.gameState[1];
+    console.log(this.score);
+
+    this.ball.shootBall();
+
+    //shoot ball
+  }
+
   newGame() {
-    this.player1Score = 0;
-    this.player2Score = 0;
     this.arena = new Arena(this);
     this.score = new Score(this);
-
     this.reset();
   }
 
   reset() {
+    //not running
     this.currentState = this.gameState[0];
+
     this.gameObjects = [];
     this.collisionObjects = [];
+
     this.player = new Player(this, ...this.paddleProperties);
     this.opponent = new Opponent(this, ...this.paddleProperties);
+
     this.ball = new Ball(this, this.width / 2, this.height / 2, 15);
 
     //all objects
@@ -49,28 +60,8 @@ export default class Game {
     );
     //collision objects
     this.collisionObjects.push(this.player, this.opponent);
-    this.input = new Input(this);
-  }
 
-  start() {
-    let ballVelocity = 10;
-
-    //Coin flip direction
-
-    let randPlusMinusX = Math.round(Math.random() * 1);
-    let randPlusMinusY = Math.round(Math.random() * 2);
-
-    let randomYVel = Math.random() * 1;
-
-    randPlusMinusX
-      ? (this.ball.velocity.x = ballVelocity)
-      : (this.ball.velocity.x = -ballVelocity);
-
-    randPlusMinusY
-      ? (this.ball.velocity.y = randomYVel)
-      : (this.ball.velocity.y = -randomYVel);
-
-    this.currentState = this.gameState[1];
+    new Input(this);
   }
 
   draw(ctx) {
