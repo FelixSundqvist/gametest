@@ -32,10 +32,11 @@ export default class ball {
     collision(this.game, this);
   }
   ballRandom() {
-    let randPlusMinusX = Math.round(Math.random() * 1);
-    randPlusMinusX
-      ? (this.velocity.x = this.runVelocity.x)
-      : (this.velocity.x = -this.runVelocity.x);
+    //choose random start
+    let randStart = Math.round(Math.random() * 1);
+    randStart
+      ? (this.game.score.p1Scored = true)
+      : (this.game.score.p2Scored = true);
   }
   shootBall() {
     if (this.game.score.p2Scored === true) {
@@ -65,7 +66,6 @@ export default class ball {
         this.radius * 2;
       this.y = this.game.opponent.position.y + 140 / 2;
     } else {
-      //this.ballRandom();
     }
   }
 }
