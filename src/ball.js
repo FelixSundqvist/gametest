@@ -9,8 +9,7 @@ export default class ball {
 
     this.velocity = {
       y: 0,
-      x: 0,
-      max: 20
+      x: 0
     };
 
     this.collision = collision;
@@ -26,20 +25,5 @@ export default class ball {
     this.y += this.velocity.y;
 
     collision(this.game, this);
-  }
-  start() {
-    //Coin flip direction
-    let randPlusMinusX = Math.round(Math.random() * 1);
-    let randPlusMinusY = Math.round(Math.random() * 1);
-
-    let randomYVel = Math.random() * 1;
-
-    randPlusMinusX ? (this.velocity.x = 5) : (this.velocity.x = -5);
-
-    randPlusMinusY
-      ? (this.velocity.y = randomYVel)
-      : (this.velocity.y = -randomYVel);
-
-    this.game.currentState = this.game.gameState[1];
   }
 }

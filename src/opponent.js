@@ -38,6 +38,7 @@ export default class Opponent {
     }
     this.position.y += this.velocity;
   }
+
   stop() {
     this.velocity = 0;
   }

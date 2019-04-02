@@ -1,7 +1,7 @@
 export default class Arena {
   constructor(game) {
-    this.player1Score = 0;
-    this.player2Score = 0;
+    this.player1Score = game.player1Score;
+    this.player2Score = game.player2Score;
     this.game = game;
     this.winScore = 3;
   }
@@ -13,26 +13,34 @@ export default class Arena {
     this.score(ctx);
   }
   score(ctx) {
-    if (this.game.ball.x <= 0) {
-      this.game.reset();
-      this.player2Score += 1;
-    } else if (this.game.ball.x > this.game.width) {
-      this.game.reset();
-      this.player1Score += 1;
+    if (
+      this.player1Score <= this.winScore &&
+      this.player2Score <= this.winScore
+    ) {
+      if (this.game.ball.x <= 0) {
+        //score left
+
+        this.player2Score += 1;
+        this.game.reset();
+      } else if (this.game.ball.x > this.game.width) {
+        //score right
+        this.player1Score += 1;
+
+        this.game.reset();
+      }
     }
 
-    if (this.player1Score === this.winScore) {
+    if (this.player1Score >= this.winScore) {
       this.win("Player 1", ctx);
-    } else if (this.player2Score === this.winScore) {
+    } else if (this.player2Score >= this.winScore) {
       this.win("Player 2", ctx);
     }
   }
   win(winner, ctx) {
-    ctx.clearRect(0, 0, this.game.width, this.game.height);
     ctx.font = "30px Arial";
-    ctx.fillStyle = "black";
-    ctx.fillText(winner + " Wins", this.game.width / 2, 100);
-    this.game.currentState = this.gameState[2];
+
+    ctx.fillText(winner + " Wins", 220, 150);
+    this.game.currentState = this.game.gameState[2];
   }
 
   update() {}
