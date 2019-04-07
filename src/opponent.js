@@ -29,9 +29,7 @@ export default class Opponent {
     } else {
       this.velocity = this.propertiesArr.enemyVelocity;
     }
-    if (this.stop === false) {
-      this.position.y += -this.velocity;
-    }
+    this.position.y += -this.velocity;
   }
 
   moveDown() {
@@ -45,6 +43,8 @@ export default class Opponent {
 
   moveCenter() {
     let center = (this.game.height - this.height) / 2;
+
+    this.y = center;
     /* if (this.y === center) {
       this.stopMovement();
     } else if (this.y > center) {
@@ -59,9 +59,6 @@ export default class Opponent {
   }
 
   update(deltaTime) {
-    if (this.velocity > 0) {
-      this.stop = false;
-    }
     setTimeout(() => this.ai(this.game, this), 1000 / 60);
   }
 }
