@@ -1,11 +1,12 @@
 import Player from "./player";
 import Opponent from "./opponent";
 import Ball from "./ball";
-import Input from "./input";
-import Arena from "./arena";
-import Score from "./score";
 
-import StartScreen from "./startscreen";
+import Input from "./utils/input";
+import Arena from "./utils/arena";
+import Score from "./utils/score";
+
+import StartScreen from "./utils/startscreen";
 
 export default class Game {
   constructor(width, height) {
@@ -13,7 +14,13 @@ export default class Game {
     this.height = height;
 
     this.paddleProperties = [
-      { height: 150, width: 20, velocity: 20, isColliding: false }
+      {
+        height: 150,
+        width: 20,
+        velocity: 20,
+        enemyVelocity: 5,
+        isColliding: false
+      }
     ];
     this.gameState = {
       0: "NOT RUNNING",
@@ -40,7 +47,7 @@ export default class Game {
   }
 
   newGame() {
-    this.currentState = this.gameState[4];
+    this.currentState = this.gameState[1];
     this.arena = new Arena(this);
     this.score = new Score(this);
     this.reset();

@@ -9,6 +9,7 @@ export default class Arena {
   }
   draw(ctx) {
     ctx.font = "70px Arial";
+    ctx.fillStyle = "white";
     ctx.fillText(this.player1Score, 200, 70);
     ctx.fillText("-", this.game.width / 2, 70);
     ctx.fillText(this.player2Score, this.game.width - 200, 70);

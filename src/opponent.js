@@ -1,3 +1,5 @@
+import { Ai } from "./utils/ai";
+
 export default class Opponent {
   constructor(game, propertiesArr) {
     this.propertiesArr = propertiesArr;
@@ -12,7 +14,9 @@ export default class Opponent {
       x: this.game.width - this.width
     };
 
-    this.velocity = propertiesArr.velocity;
+    this.velocity = propertiesArr.enemyVelocity;
+
+    this.ai = Ai;
   }
 
   draw(ctx) {
@@ -21,9 +25,9 @@ export default class Opponent {
 
   moveUp() {
     if (this.position.y < 0) {
-      this.velocity = 0;
+      this.stopMovement();
     } else {
-      this.velocity = this.propertiesArr.velocity;
+      this.velocity = this.propertiesArr.enemyVelocity;
     }
     if (this.stop === false) {
       this.position.y += -this.velocity;
@@ -32,16 +36,32 @@ export default class Opponent {
 
   moveDown() {
     if (this.position.y + this.height >= this.game.height) {
-      this.velocity = 0;
+      this.stopMovement();
     } else {
-      this.velocity = this.propertiesArr.velocity;
+      this.velocity = this.propertiesArr.enemyVelocity;
     }
     this.position.y += this.velocity;
   }
 
-  stop() {
+  moveCenter() {
+    let center = (this.game.height - this.height) / 2;
+    /* if (this.y === center) {
+      this.stopMovement();
+    } else if (this.y > center) {
+      this.velocity = this.propertiesArr.enemyVelocity;
+    } else {
+      this.moveUp();
+    }*/
+  }
+  stopMovement() {
     this.velocity = 0;
+    this.stop = true;
   }
 
-  update(deltaTime) {}
+  update(deltaTime) {
+    if (this.velocity > 0) {
+      this.stop = false;
+    }
+    setTimeout(() => this.ai(this.game, this), 1000 / 60);
+  }
 }

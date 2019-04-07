@@ -1,4 +1,5 @@
-import { collision } from "./collision";
+import { collision } from "./utils/collision";
+import Hitbox from "./utils/hitbox";
 
 export default class ball {
   constructor(game, x, y, radius) {
@@ -14,23 +15,34 @@ export default class ball {
     };
     this.runVelocity = {
       y: 2,
-      x: 10
+      x: 12
     };
 
     this.collision = collision;
+
+    /*this.hitbox = new Hitbox(
+      this.x - this.radius,
+      this.y - this.radius,
+      this.radius * 2,
+      this.radius * 2
+    );*/
   }
   draw(ctx) {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, this.radius / 2);
     ctx.fill();
+    //this.hitbox.draw(ctx);
   }
   update(deltaTime) {
     this.positionBall();
+
     this.x += this.velocity.x;
     this.y += this.velocity.y;
 
+    //this.hitbox.update(this.velocity.x, this.velocity.y);
     collision(this.game, this);
   }
+
   ballRandom() {
     //choose random start
     let randStart = Math.round(Math.random() * 1);

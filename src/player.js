@@ -18,7 +18,7 @@ export default class Player {
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
   moveUp() {
-    if (this.position.y < 0) {
+    if (this.position.y < 0 - this.height / 2) {
       this.velocity = 0;
     } else {
       this.velocity = this.propertiesArr.velocity;
@@ -26,7 +26,7 @@ export default class Player {
     this.position.y += -this.velocity;
   }
   moveDown() {
-    if (this.position.y + this.height >= this.game.height) {
+    if (this.position.y + this.height / 2 >= this.game.height) {
       this.velocity = 0;
     } else {
       this.velocity = this.propertiesArr.velocity;
