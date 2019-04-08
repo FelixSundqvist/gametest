@@ -1,5 +1,8 @@
 export function collision(game, object) {
-  if (object.y - object.radius < 0 || object.y + object.radius > game.height) {
+  if (
+    object.y - object.radius < -20 ||
+    object.y + object.radius > game.height + 20
+  ) {
     object.velocity.y = -object.velocity.y;
   }
   for (let i of game.collisionObjects) {

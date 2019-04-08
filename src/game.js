@@ -15,10 +15,10 @@ export default class Game {
 
     this.paddleProperties = [
       {
-        height: 150,
-        width: 20,
+        height: 120,
+        width: 15,
         velocity: 20,
-        enemyVelocity: 5,
+        enemyVelocity: 6,
         isColliding: false
       }
     ];
